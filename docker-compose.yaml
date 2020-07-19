@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  jupyter:
+    image: jupyter/all-spark-notebook:latest
+    container_name:   jupyter_notebook
+    restart: unless-stopped
+    volumes:
+      - ./_data:/home/jupyter/work
+    ports:
+      - 8888:8888
+    command: "start-notebook.sh"
+    user: root
+    environment:
+      NB_USER: jupyter
+      NB_UID: 1008
+      NB_GID: 1011
+      CHOWN_HOME: 'yes'
+      CHOWN_HOME_OPTS: -R
+
